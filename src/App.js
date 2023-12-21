@@ -10,7 +10,7 @@ const App = () => {
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`)
         const data = await response.json()
-        if(data)
+        if(data.Response)
             setMovies(data.Search)
         else{
             setMovies([])
@@ -42,9 +42,8 @@ const App = () => {
                 <img src={SearchIcon} alt="search" onClick={() => searchMovies(searchTerm)} />
 
             </div>
-
             {
-                (movies.length > 0) ? (
+                (movies) ? (
                     <div className="container">
                         {movies.map((movie) => (<MovieCard movie1={movie} />))}
                     </div>
